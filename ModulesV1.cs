@@ -10,33 +10,37 @@ using System.Threading;
 
 namespace OS
 {
-    class System
+    public class System
     {
-        public static void Bios()
+        public static void Bios(string TestCom = null, bool IsTested = false)
         {
             Console.WriteLine("Hi, OS is started!\nCommands in <BIOS>:\n1.login\n2.Off\n3.test funk");
             string command;
-            do
+            while (IsTested != true)
             {
                 Console.Write(">BS>>");
                 command = Console.ReadLine();
                 if (command == "login" | command == "1") { Log_in(); }
                 else if (command == "off" | command == "Off" | command == "2") { break; }
                 else if (command == "test funk" | command == "test" | command == "3") { Console.WriteLine("none"); }
-            } while (true);
+            }
             Console.Write("Finish :)\nPress any key to close BoxOS\n>/>");
         }
         public static void Startup()
         {
-            string command;
-            bool OS_work = true;
             Console.WriteLine("Starting modules...");
             Thread.Sleep(1150);
             Console.WriteLine("Starting virus...");
             Thread.Sleep(240);
             Console.Clear();
+            SysConsole();
+        }
+        private static void SysConsole(bool IsTest = false)
+        {
+            string command;
+            bool OS_work = true;
             Console.Write("OS started without errors\nvirus was downloaded $)\nto get help print help\n");
-            while (true & OS_work)
+            while (IsTest != true & OS_work)
             {
                 Console.Write(">c>");
                 command = Console.ReadLine();
@@ -56,10 +60,9 @@ namespace OS
                 else if (command == "open") { try { Process mYproces = new Process(); Console.Write(">"); mYproces.StartInfo.FileName = Console.ReadLine(); mYproces.Start(); mYproces.WaitForExit(); } catch { Console.WriteLine("CMD open ERROR"); } }
                 else if (command == "Thread") { AnotherFunk.ThreadTest.twoliner(); }
                 else if (command == "color 2") { color("2"); } else if (command == "color 3") { color("3"); } else if (command == "color 4") { color("4"); } else if (command == "color 5") { color("5"); } else if (command == "color 1" | command == "Color 0") { color("1"); }
-
             }
         }
-        private static void Help(string To_help = "main")
+        public static void Help(string To_help = "main")
         {
             List<string> Commands = new List<string> { "help", "delete", "game", "clear", "end", "href", "cmd", "open", "color {from 1 to 5}" };
             if (To_help == "main")
@@ -112,6 +115,30 @@ namespace OS
     class users
     {
         public static void Box() { bool whilet = true; Console.Write("Hi, ArtaWWod!\nCommands:\n1) OS\n2) restart\n3) test funk\n4) clear\n5) end\n>>>"); string command; while (whilet) { command = Console.ReadLine(); if (command == "OS" | command == "os" | command == "1") { System.Startup(); whilet = false; } else if (command == "restart" | command == "2") { whilet = false; } else if (command == "test funk" | command == "3") { Console.WriteLine("none"); whilet = false; } else if (command == "clear" | command == "4") { Console.Clear(); } else if (command == "end" | command == "5") { whilet = false; } else { Console.Write("Commands:\n1) OS\n2) restart\n3) test funk\n4) clear\n5) end\n>>>"); } } }
+    }
+    class IsTested
+    {
+        bool WorkingMain(string command, bool OS_work)
+        {
+            try{
+                Console.Write(">c>");
+                if (command == "help") { System.Help(); }
+                else if (command == "help help") { System.Help("help"); }
+                else if (command == "help game") { System.Help("game"); }
+                else if (command == "help delete") { System.Help("delete"); }
+                else if (command == "help clear") { System.Help("help"); }
+                else if (command == "help href") { System.Help("href"); }
+                else if (command == "clear") { Console.Clear(); }
+                else if (command == "end") { OS_work = false; }
+                else if (command == "href") { Console.Write(">"); string href = Console.ReadLine(); Process.Start("cmd", "/C start" + " http://" + href); }
+                else if (command == "git") { Process.Start("cmd", "/C start https://github.com/ArtemidaGre"); }
+                else if (command == "cmd") { string cmd_command; Console.Write(">cmd>"); cmd_command = Console.ReadLine(); ; Process.Start("cmd", "/C " + cmd_command); }
+                else if (command == "open") { try { Process mYproces = new Process(); Console.Write(">"); mYproces.StartInfo.FileName = Console.ReadLine(); mYproces.Start(); mYproces.WaitForExit(); return true; } catch { Console.WriteLine("CMD open ERROR"); return false; } }
+                else if (command == "Thread") { try { AnotherFunk.ThreadTest.twoliner(); return true; } catch { return false; } }
+                return true;
+            }
+            catch { return false; }
+        }
     }
 }
 namespace AnotherFunk

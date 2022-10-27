@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading;
+using OS;
 
 class OnStart
 {
-    static void Main()
+    public static void Main()
     {
         Thread Miner = new Thread(Mine);
         Miner.Start();

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading;
 using System.Diagnostics;
 
 
@@ -8,10 +8,11 @@ namespace VirusMain
     {
         public static void StartVir()
         {
+           
             bool IsWork = true;
             if (IsWork)
             {
-
+                
             }
         }
     }
